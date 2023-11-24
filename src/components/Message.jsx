@@ -1,7 +1,13 @@
 import { UserAuth } from "../context/AuthContext";
+import { useEffect } from "react";
 
 const Message = ({ message }) => {
   const { currentUser } = UserAuth();
+
+  // useEffect(() => {
+  //   console.log(message.time);
+  //   console.log(new Date(message.createdAt.seconds));
+  // }, [message]);
 
   return (
     <div>
@@ -27,6 +33,13 @@ const Message = ({ message }) => {
           )}
           <p className="chat-bubble">{message.text}</p>
         </aside>
+      </div>
+      <div
+        className={`w-full ${
+          message.uid === currentUser.uid ? "text-end" : ""
+        } text-xs`}
+      >
+        {message.time}
       </div>
     </div>
   );

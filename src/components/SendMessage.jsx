@@ -16,6 +16,10 @@ const SendMessage = () => {
     }
     setValue("");
 
+    const date = new Date();
+    const hour = date.getHours();
+    const min = date.getMinutes();
+
     try {
       const { uid, displayName, photoURL } = currentUser;
       await addDoc(collection(db, "messages"), {
@@ -24,6 +28,7 @@ const SendMessage = () => {
         avatar: photoURL,
         createdAt: serverTimestamp(),
         uid,
+        time: `${hour}:${min < 10 ? "0" : ""}${min}`,
       });
     } catch (error) {
       console.log(error);
