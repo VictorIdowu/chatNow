@@ -10,10 +10,6 @@ const SendMessage = () => {
   const handleSendMessage = async (e) => {
     e.preventDefault();
 
-    if (value.trim() === "") {
-      alert("Enter valid message!");
-      return;
-    }
     setValue("");
 
     const date = new Date();
@@ -44,12 +40,22 @@ const SendMessage = () => {
           className="input w-full focus:outline-none border border-gray-500"
           type="text"
         />
-        <button
-          type="submit"
-          className="w-auto btn shadow-lg text-white rounded-r-lg px-5 text-sm"
-        >
-          Send
-        </button>
+        {value.trim() === "" && (
+          <button
+            type="button"
+            className="w-auto btn opacity-75 shadow-lg btn-ghost rounded-r-lg px-5 text-sm cursor-not-allowed"
+          >
+            Send
+          </button>
+        )}
+        {value.trim() !== "" && (
+          <button
+            type="submit"
+            className="w-auto btn shadow-lg text-white rounded-r-lg px-5 text-sm"
+          >
+            Send
+          </button>
+        )}
       </form>
     </div>
   );
